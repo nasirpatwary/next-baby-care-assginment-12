@@ -28,7 +28,8 @@ const bannerData = [
 
 const Banner = () => {
   return (
-    <Container className="mt-12">
+    <div className='bg-base-100'>
+      <Container className="flex items-center py-10 lg:py-0 justify-center min-h-[calc(100vh-292px)]">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -42,14 +43,14 @@ const Banner = () => {
       >
         {bannerData.map((slide) => (
           <SwiperSlide key={slide.id}>
-              <div className="text-center px-6 space-y-4">
-                <h2 className="text-3xl md:text-5xl font-bold">
+              <div className="text-center space-y-4">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold lg:font-bold">
                 {slide.title}
                 </h2>
                 <p className="text-lg md:text-xl text-base-content/80 max-w-[70ch] mx-auto leading-relaxed">
                     {slide.subtitle}
                 </p>
-                <div className='text-center inline-block'>
+                <div className='text-center inline-block mt-4'>
                 <ButtonComponent>{slide.btnText}</ButtonComponent>
                 </div>
               </div>
@@ -57,6 +58,7 @@ const Banner = () => {
         ))}
       </Swiper>
     </Container>
+    </div>
   );
 };
 

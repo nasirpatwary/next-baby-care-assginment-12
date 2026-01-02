@@ -55,7 +55,7 @@ const careData = [
     
   }
 ];
-const ReliableCare = () => {
+const About = () => {
   const observerOptions = {
     triggerOnce: false,
     rootMargin: '0px 0px -40px 0px'
@@ -65,7 +65,7 @@ const ReliableCare = () => {
     <div className="bg-gray-50 py-16 overflow-hidden">
       <Container>
         <div className="text-center space-y-4 mb-12">
-          <h2 className="text-3xl md:text-4xl font-extrabold">
+          <h2 className="text-2xl md:text-4xl font-extrabold">
             Reliable Care Solutions
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
@@ -97,4 +97,4 @@ const ReliableCare = () => {
   );
 };
 
-export default ReliableCare;
+export default About;

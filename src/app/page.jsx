@@ -1,5 +1,7 @@
 import Banner from "@/components/homepage/Banner"
-import ReliableCare from "@/components/homepage/ReliableCare"
+import About from "@/components/homepage/About"
+import ServicesOverview from "@/components/homepage/ServicesOverview"
+import Testimonial from "@/components/homepage/Testimonial"
 
 const Home = () => {
   return (
@@ -8,7 +10,13 @@ const Home = () => {
         <Banner />
       </section>
       <section>
-        <ReliableCare />
+        <ServicesOverview />
+      </section>
+      <section>
+        <About />
+      </section>
+      <section>
+        <Testimonial />
       </section>
     </div>
   )
