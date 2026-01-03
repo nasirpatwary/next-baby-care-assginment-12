@@ -1,15 +1,13 @@
+
+const hostnames = ["avatars.githubusercontent.com", "i.pinimg.com", "images.unsplash.com"];
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-        port: '',
-        pathname: '/**',
-        search: '',
-      },
-    ],
+  images: {
+    remotePatterns: hostnames.map((hostname) => ({
+      protocol: 'https',
+      hostname,
+      pathname: '/**',
+    })),
   },
 };
 
