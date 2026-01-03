@@ -4,8 +4,14 @@ import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import { signIn } from "next-auth/react"
 import SocialLogin from "@/components/shared/SocialLogin";
+import toast from "react-hot-toast";
+import { useRouter, useSearchParams } from "next/navigation";
 const LoginComponent = () => {
+  const params = useSearchParams()
+  const router = useRouter()
+  const callback = params.get("callbackUrl") || "/"
   const [eye, setEye] = useState(false)
   const [ loading, setLoading ] = useState(false)
   const { control, handleSubmit} = useForm({
@@ -16,8 +22,15 @@ const LoginComponent = () => {
   });
   const onSubmit = async (data) => {
     try {
-      console.log("Form Data:", data)
       setLoading(true)
+      const {email, password} = data
+      const {ok, status} = await signIn('credentials', { redirect: false, callbackUrl: callback, email, password })
+      if (ok) {
+        router.push(callback)
+        toast.success(`login status ${status} successfully!`)
+      }else{
+        toast.success(`bad status ${status} code!`)
+      }
     } catch (error) {
       console.log("faild login", error)
     }finally{

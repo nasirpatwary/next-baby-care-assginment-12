@@ -5,7 +5,7 @@ const ButtonComponent = ({
   className = "" 
 }) => {
   
-  const baseStyles = "px-8 py-2 rounded-full font-semibold transition-all duration-200 active:scale-95 shadow-md flex items-center justify-center gap-2 text-lg";
+  const baseStyles = "px-8 py-2 cursor-pointer rounded-full font-semibold transition-all duration-200 active:scale-95 shadow-md flex items-center justify-center gap-2 text-lg";
   
   const variants = {
     primary: "bg-primary text-white hover:bg-opacity-90",

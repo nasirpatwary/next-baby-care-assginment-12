@@ -1,14 +1,20 @@
 "use client";
+import { createPostUser } from "@/actions/server/users";
 import FormInput from "@/components/forms/FormInput";
 import SocialLogin from "@/components/shared/SocialLogin";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
 const RegisterComponent = () => {
   const [eye, setEye] = useState(false)
   const [ loading, setLoading ] = useState(false)
+  const params = useSearchParams()
+  const router = useRouter()
+  const callback = params.get("callbackUrl") || "/"
   const { control, handleSubmit,  } = useForm({
     defaultValues: {
       image: "",
@@ -21,8 +27,19 @@ const RegisterComponent = () => {
   });
   const onSubmit = async (data) => {
     try { 
+        const {email, password} = data
         setLoading(true)
-        console.log("react hook form", data)
+      const {status, message} = await createPostUser(data)
+      if (status === 201) {
+      const {ok} = await signIn("credentials", {redirect: false, callbackUrl: callback, email, password })
+        if (ok) {
+          router.push(callback)
+          toast.success(message)
+        }
+      }else{
+        toast.error(message)
+      }
+
     } catch (error) {
         
     }finally{

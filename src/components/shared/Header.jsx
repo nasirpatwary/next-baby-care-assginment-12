@@ -13,17 +13,20 @@ import { useEffect, useState } from "react";
 import Logo from "./Logo";
 import NavLink from "./NavLink";
 import { usePathname } from "next/navigation";
+import { useSession, signOut } from "next-auth/react";
+import { Loader } from "lucide-react";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const session = useSession()
+  console.log(session)
   const pathname = usePathname();
-
-    useEffect(() => {
+  useEffect(() => {
       setIsMenuOpen(false);
     }, [pathname]);
 
   const navLinks = <>
-    <NavLink href={"/my-booking"}>MyBooking</NavLink>
     <NavLink href={"/services"}>Services</NavLink>
+    <NavLink href={"/my-booking"}>MyBooking</NavLink>
     <NavLink href={"/bookings"}>Bookings</NavLink>
     </>
   return (
@@ -47,14 +50,25 @@ export default function Header() {
       </NavbarContent>
       <NavbarContent justify="end">
         <div className="hidden md:flex gap-4">
-          <NavbarItem>
-          <Link href="/login" className="btn btn-sm">Login</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link href="/register" className="btn btn-sm">
-            Sign Up
-          </Link>
-        </NavbarItem>
+         {session.status === "loading" ? <Loader size={24} className="animate-spin text-center" />
+         :
+         session.status === "authenticated" ?
+         <>
+         <button onClick={() => signOut()} className="btn btn-sm text-base">Sign Out</button>
+         </> 
+         :
+         <>
+         <NavbarItem>
+         <Link href="/login" className="btn btn-sm">Login</Link>
+       </NavbarItem>
+       <NavbarItem>
+         <Link href="/register" className="btn btn-sm">
+           Sign Up
+         </Link>
+       </NavbarItem>
+         </>
+         
+        }
         </div>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}

@@ -4,7 +4,7 @@ import 'swiper/css';
 import 'react-vertical-timeline-component/style.min.css';
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
-
+import { Providers } from "@/providers";
 const rubik = Rubik({
   weight: ["300", "400", "500", "600", "700"]
 })
@@ -20,11 +20,13 @@ export default function RootLayout({ children }) {
       <body
         className={`${rubik.className} antialiased`}
       >
+        <Providers>
         <Header />
         <main className="min-h-[calc(100vh-292px)]">
-          {children}
+            {children}
         </main>
         <Footer />
+        </Providers>
       </body>
     </html>
   );
