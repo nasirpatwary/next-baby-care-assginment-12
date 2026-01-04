@@ -52,7 +52,7 @@ const Booking = async ({params}) => {
     </div>
     {/* Booking form */}
     <div className="flex-1">
-        <FormBooking />
+        <FormBooking {...service} />
     </div>
     </Container>
   )

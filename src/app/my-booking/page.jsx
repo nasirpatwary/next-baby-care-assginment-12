@@ -1,8 +1,7 @@
-import React from 'react'
-
+import Container from "@/components/shared/Container"
 const MyBooking = () => {
   return (
-    <div>MyBooking</div>
+    <Container>MyBooking</Container>
   )
 }
 
