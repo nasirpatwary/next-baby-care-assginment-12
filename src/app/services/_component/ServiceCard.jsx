@@ -27,7 +27,7 @@ const ServiceCard = ({service}) => {
                  <p>$ {service_charge}</p>
              </div>
           <Link href={`/services/${_id}`} className="font-semibold w-full btn bg-primary">
-            Book Service
+          Service Details
           </Link>
           </div>
         </CardFooter>

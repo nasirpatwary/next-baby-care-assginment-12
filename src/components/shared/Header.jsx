@@ -20,7 +20,6 @@ import Image from "next/image";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const session = useSession()
-  console.log(session)
   const pathname = usePathname();
   useEffect(() => {
       setIsMenuOpen(false);
@@ -29,7 +28,6 @@ export default function Header() {
   const navLinks = <>
     <NavLink href={"/services"}>Services</NavLink>
     <NavLink href={"/my-booking"}>MyBooking</NavLink>
-    <NavLink href={"/bookings"}>Bookings</NavLink>
     </>
   return (
 
@@ -86,12 +84,13 @@ export default function Header() {
               {navLinks}
             </nav>
           </NavbarMenuItem>
-         { session?.status === "authenticated" ?
+         <div className="mt-4">
+          { session?.status === "authenticated" ?
          <>
          <button onClick={() => signOut()} className="btn btn-sm text-base w-fit">Sign Out</button>
          </> 
          :
-         <>
+         <div className="space-y-6">
          <NavbarItem>
          <Link href="/login" className="btn btn-sm">Login</Link>
        </NavbarItem>
@@ -100,8 +99,9 @@ export default function Header() {
            Sign Up
          </Link>
        </NavbarItem>
-         </>
+         </div>
         }
+         </div>
       </NavbarMenu>
     </NextUINavbar>
   );

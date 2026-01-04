@@ -89,7 +89,7 @@ const LoginComponent = () => {
             {loading ? "Submitting" : "Login"}
           </button>
         </form>
-        <p className="mt-4">Don't Have an account? <Link href={`/register`} className="text-primary">Register</Link></p>
+        <p className="mt-4">Don't Have an account? <Link href={`/register?callbackUrl=${callback}`} className="text-primary">Register</Link></p>
         <SocialLogin />
       </div>
       </div>

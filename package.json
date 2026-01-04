@@ -11,6 +11,7 @@
   "dependencies": {
     "@heroui/navbar": "^2.2.27",
     "@heroui/react": "^2.8.7",
+    "@smastrom/react-rating": "^1.5.0",
     "axios": "^1.13.2",
     "bcryptjs": "^3.0.3",
     "daisyui": "^5.5.14",

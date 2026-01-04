@@ -1,6 +1,7 @@
 import { Rubik } from "next/font/google";
 import "./globals.css";
 import 'swiper/css';
+import '@smastrom/react-rating/style.css'
 import 'react-vertical-timeline-component/style.min.css';
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
