@@ -5,6 +5,9 @@ import GoogleProvider from "next-auth/providers/google";
 import { collections, dbConnect } from "./dbConnect";
 const userCollection = await dbConnect(collections.USERS)
 export const authOptions = {
+ session: {
+    strategy: "jwt", 
+  },
 providers: [
   CredentialsProvider({
   

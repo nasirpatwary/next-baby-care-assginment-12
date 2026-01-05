@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic';
 import { Baby, HeartHandshake, Stethoscope, ShieldCheck, Clock8, Activity } from 'lucide-react';
 import Container from '../shared/Container';
 
-// Disable SSR for the timeline to prevent hydration/prototype errors in Next.js
 const VerticalTimeline = dynamic(
   () => import('react-vertical-timeline-component').then((mod) => mod.VerticalTimeline),
   { ssr: false }
@@ -20,39 +19,42 @@ const careData = [
     title: "Nurturing Child Care",
     description: "Providing a safe, creative, and joyful environment where your little ones can thrive under expert supervision.",
     icon: <Baby className="w-8 h-8 text-rose-500" />,
+    date: "2026-05-01" // May 1, 2026
   },
   {
     id: 2,
     title: "Compassionate Senior Support",
     description: "Ensuring dignity and comfort for the elderly through personalized daily assistance and emotional companionship.",
     icon: <HeartHandshake className="w-8 h-8 text-blue-600" />,
-    
+    date: "2026-05-05" // May 5, 2026
   },
   {
     id: 3,
     title: "Professional Nursing",
     description: "Hospital-grade medical care delivered in the comfort of your home by licensed healthcare professionals.",
     icon: <Stethoscope className="w-8 h-8 text-emerald-600" />,
+    date: "2026-05-10" // May 10, 2026
   },
   {
     id: 4,
     title: "Verified & Background Checked",
     description: "Your family's safety is our priority. Every caregiver undergoes rigorous background checks and training.",
     icon: <ShieldCheck className="w-8 h-8 text-indigo-600" />,
+    date: "2026-05-15" // May 15, 2026
   },
   {
     id: 5,
     title: "24/7 Reliable Assistance",
     description: "Emergency or routine, our dedicated team is available around the clock to provide support whenever needed.",
     icon: <Clock8 className="w-8 h-8 text-amber-500" />,
-    
+    date: "2026-05-20" // May 20, 2026
   },
   {
     id: 6,
     title: "Specialized Rehabilitation",
     description: "Helping patients regain strength and mobility through tailored physiotherapy and exercise programs.",
     icon: <Activity className="w-8 h-8 text-cyan-600" />,
-    
+    date: "2026-05-25" // May 25, 2026
   }
 ];
 const About = () => {
@@ -85,7 +87,7 @@ const About = () => {
               iconStyle={{ background: item.bgColor, color: '#fff' }}
               icon={<div className="absolute inset-0">{item.icon}</div>}
             >
-              <h3 className="text-xl font-bold">{item.title}</h3>
+              <h3 className="text-xl font-semibold">{item.title}</h3>
               <p className="!text-sm !font-normal !leading-relaxed text-gray-500">
                 {item.description}
               </p>

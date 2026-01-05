@@ -16,7 +16,7 @@ const BookingTable = ({initialBookings}) => {
 <div>
     {
     bookings?.length < 1  ? <EmtyContent /> : 
-  (<div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 my-12">
+  (<div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 mt-12">
   <table className="table">
     {/* head */}
     <thead>
