@@ -2,6 +2,7 @@
 import { createPostUser } from "@/actions/server/users";
 import FormInput from "@/components/forms/FormInput";
 import SocialLogin from "@/components/shared/SocialLogin";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
@@ -31,10 +32,11 @@ const RegisterComponent = () => {
         setLoading(true)
       const {status, message} = await createPostUser(data)
       if (status === 201) {
-      const {ok} = await signIn("credentials", {redirect: false, callbackUrl: callback, email, password })
-        if (ok) {
-          router.push(callback)
+      const res = await signIn("credentials", {redirect: false, callbackUrl: callback, email, password })
+      console.log(res) 
+      if (res.ok) {
           toast.success(message)
+          router.push(callback)
         }
       }else{
         toast.error(message)

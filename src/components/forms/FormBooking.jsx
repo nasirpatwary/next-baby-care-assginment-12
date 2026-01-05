@@ -65,7 +65,7 @@ const FormBooing = ({service_charge, hourly_rate, service_name}) => {
    const totalHours = convertToHours(duration)
    const totalCost = service_charge + hourly_rate * totalHours;
    const bookings = {
-    email: user?.email,
+    email: session?.data?.user?.email,
     service_name,
     totalCost,
     district,

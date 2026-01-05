@@ -29,7 +29,7 @@ const LoginComponent = () => {
         router.push(callback)
         toast.success(`login status ${status} successfully!`)
       }else{
-        toast.success(`bad status ${status} code!`)
+        toast.error(`bad status ${status} code!`)
       }
     } catch (error) {
       console.log("faild login", error)

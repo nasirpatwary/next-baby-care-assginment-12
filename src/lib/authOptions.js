@@ -42,7 +42,6 @@ callbacks: {
     // },
     async session({ session, user, token }) {
       if (token) {
-        session.role = token?.role
         session.email = token?.email
       }
       return session
@@ -51,10 +50,8 @@ callbacks: {
       if (user) {
         if (account.provider) {
           const dbUser = await userCollection.findOne({email: user?.email})
-          token.role = dbUser?.role
           token.email = dbUser?.email
         }else{
-          token.role = user?.role
           token.email = user?.email
         }
       }

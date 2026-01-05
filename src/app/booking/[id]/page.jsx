@@ -2,6 +2,10 @@ import { getGingleService } from "@/actions/server/services"
 import FormBooking from "@/components/forms/FormBooking"
 import Container from "@/components/shared/Container"
 import { Rating } from "@smastrom/react-rating"
+export const metadata = {
+  title: "booking",
+  description: "professional care at home in Bangladesh. Reliable, 24/7 patient support"
+}
 const Booking = async ({params}) => {
   const {id} = await params
   const service = await getGingleService(id)

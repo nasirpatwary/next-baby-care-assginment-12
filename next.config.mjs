@@ -1,5 +1,5 @@
 
-const hostnames = ["avatars.githubusercontent.com", "i.pinimg.com", "images.unsplash.com", "lh3.googleusercontent.com"];
+const hostnames = ["avatars.githubusercontent.com", "i.ibb.co.com",  "i.pinimg.com", "images.unsplash.com", "lh3.googleusercontent.com"];
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {

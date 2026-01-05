@@ -19,8 +19,8 @@ const DetailsCard = ({service}) => {
     _id
   } = service || {}
   return (
-    <div className="rounded-3xl shadow-sm border border-base-200 bg-base-100 mb-16">
-      <Container className="grid lg:grid-cols-2 gap-12 py-6">
+    <div className="rounded-3xl shadow-sm border border-base-200 bg-base-100">
+      <Container className="grid lg:grid-cols-2 gap-12 py-12">
         
         {/* Left: Image Section */}
         <div className="flex flex-col gap-4">
