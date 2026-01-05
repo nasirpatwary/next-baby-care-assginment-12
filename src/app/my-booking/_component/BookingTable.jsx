@@ -8,6 +8,7 @@ import EmtyContent from "@/components/shared/EmtyContent";
 import MyModal from "@/components/modals/MyModal";
 const BookingTable = ({initialBookings}) => {
   const [bookings, setBookings] = useState(initialBookings)
+
   const handleRemoveBooking = async id =>{
    await removeBooking(id, setBookings)
   }

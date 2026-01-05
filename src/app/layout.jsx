@@ -12,7 +12,7 @@ const rubik = Rubik({
 
 export const metadata = {
   applicationName: 'Care.xyz',
-  metadataBase: new URL('https://care-xyz.vercel.app'), // আপনার অরিজিনাল ইউআরএল দিন
+  metadataBase: new URL('https://next-assignment-self.vercel.app'),
 
   title: {
     default: 'Care.xyz | Professional Nursing & Medical Care at Home',
@@ -43,7 +43,7 @@ export const metadata = {
   openGraph: {
     title: 'Care.xyz - Bringing Hospital-Grade Care to Your Home',
     description: 'Expert nursing and patient care services tailored to your family’s needs.',
-    url: 'https://care-xyz.vercel.app',
+    url: 'https://next-assignment-self.vercel.app',
     siteName: 'Care.xyz',
     images: [
       {

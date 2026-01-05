@@ -2,6 +2,8 @@
 
 import apiAxios from "@/lib/apiAxios"
 import { collections, dbConnect } from "@/lib/dbConnect"
+import { OrderInvoiceTemplate } from "@/lib/OrderInvoiceTemplate"
+import { sendEmail } from "./sendEmail"
 
 const { authOptions } = require("@/lib/authOptions")
 const { getServerSession } = require("next-auth")
@@ -26,6 +28,18 @@ export const addToBookings = async (payload) => {
     return {message: "booking failed", success: false}
     }
     const {data} = await apiAxios.post("/api/bookings", payload)
+    try {
+        await sendEmail({
+        to: user?.email,
+        subject: 'Your Order Invoice Baby Care',
+        html: OrderInvoiceTemplate({ 
+        bookingData: payload,
+        orderId: data?.bookings?.insertedId.toString()
+        }),
+        });
+        } catch (error) {
+            console.error("Email failed to send:", error);
+        }
     return {success: data.bookings.acknowledged}
 }
 

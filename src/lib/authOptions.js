@@ -9,8 +9,8 @@ providers: [
   CredentialsProvider({
   
   async authorize(credentials, req) {
-      return await loginUser(credentials)
-    
+      const user = await loginUser(credentials)
+      return user
     }
   }),
    GoogleProvider({
@@ -22,6 +22,7 @@ providers: [
     clientSecret: process.env.GITHUB_SECRET
   })
 ],
+
 callbacks: {
     async signIn({ user, account, profile, credentials }) {
       try {
