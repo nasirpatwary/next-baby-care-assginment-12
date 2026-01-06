@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
-export async function proxy(req) {
+export async function middleware(req) {
   const privateRoutes = ["/booking", "/my-booking"];
   const { pathname } = req.nextUrl;
+
   const token = req.cookies.get('next-auth.session-token') 
     || req.cookies.get('__Secure-next-auth.session-token');
 
@@ -11,7 +12,7 @@ export async function proxy(req) {
   );
   if (privateRoute && !isAuthenticate) {
     return NextResponse.redirect(
-      new URL(`/login?callbackUrl=${encodeURIComponent(pathname)}`, req.url)
+      new URL(`/login?callbackUrl=${(pathname)}`, req.url)
     );
   }
   return NextResponse.next();

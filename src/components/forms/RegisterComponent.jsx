@@ -4,7 +4,7 @@ import FormInput from "@/components/forms/FormInput";
 import SocialLogin from "@/components/shared/SocialLogin";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -14,8 +14,7 @@ const RegisterComponent = () => {
   const [eye, setEye] = useState(false)
   const [ loading, setLoading ] = useState(false)
   const params = useSearchParams()
-  const router = useRouter()
-  const callback = params.get("callbackUrl") || "/"
+  const callbackUrl = params.get("callbackUrl") || "/"
   const { control, handleSubmit,  } = useForm({
     defaultValues: {
       image: "",
@@ -32,11 +31,10 @@ const RegisterComponent = () => {
         setLoading(true)
       const {status, message} = await createPostUser(data)
       if (status === 201) {
-      const res = await signIn("credentials", {redirect: false, callbackUrl: callback, email, password })
-      console.log(res) 
+      const res = await signIn("credentials", { redirect: false, email, password })
       if (res.ok) {
           toast.success(message)
-          router.push(callback)
+          window.location.href = callbackUrl
         }
       }else{
         toast.error(message)

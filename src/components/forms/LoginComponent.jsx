@@ -7,11 +7,10 @@ import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { signIn } from "next-auth/react"
 import SocialLogin from "@/components/shared/SocialLogin";
 import toast from "react-hot-toast";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 const LoginComponent = () => {
   const params = useSearchParams()
-  const router = useRouter()
-  const callback = params.get("callbackUrl") || "/"
+  const callbackUrl = params.get("callbackUrl") || "/"
   const [eye, setEye] = useState(false)
   const [ loading, setLoading ] = useState(false)
   const { control, handleSubmit} = useForm({
@@ -24,10 +23,10 @@ const LoginComponent = () => {
     try {
       setLoading(true)
       const {email, password} = data
-      const {ok, status} = await signIn('credentials', { redirect: false, callbackUrl: callback, email, password })
+      const {ok, status} = await signIn('credentials', { redirect: false, email, password })
       if (ok) {
-        router.push(callback)
         toast.success(`login status ${status} successfully!`)
+        window.location.href = callbackUrl
       }else{
         toast.error(` unauthorized bad status ${status} code!`)
       }
@@ -89,7 +88,7 @@ const LoginComponent = () => {
             {loading ? "Submitting" : "Login"}
           </button>
         </form>
-        <p className="mt-4">Don't Have an account? <Link href={`/register?callbackUrl=${callback}`} className="text-primary">Register</Link></p>
+        <p className="mt-4">Don't Have an account? <Link href={`/register?callbackUrl=${encodeURIComponent(callbackUrl)}`} className="text-primary">Register</Link></p>
         <SocialLogin />
       </div>
       </div>
