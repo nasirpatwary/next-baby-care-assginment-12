@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-export async function middleware(req) {
+export async function proxy(req) {
   const privateRoutes = ["/booking", "/my-booking"];
   const { pathname } = req.nextUrl;
 
