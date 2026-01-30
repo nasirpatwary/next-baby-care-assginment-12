@@ -19,7 +19,7 @@ const DetailsCard = ({service}) => {
     _id
   } = service || {}
   return (
-   <div className="bg-white dark:bg-slate-900 transition-colors duration-300">
+   <div className="rounded-t-3xl shadow-sm border border-gray-100 dark:border-slate-800 bg-white dark:bg-slate-900 transition-colors duration-300">
   <Container className="grid lg:grid-cols-2 gap-12 py-12">
     
     {/* Left: Image Section */}
