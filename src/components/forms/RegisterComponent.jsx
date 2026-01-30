@@ -9,137 +9,158 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
-
+import Lottie from "lottie-react";
+import login from "../../assets/lottie3.json";
+import Container from "../shared/Container";
 const RegisterComponent = () => {
-  const [eye, setEye] = useState(false)
-  const [ loading, setLoading ] = useState(false)
-  const params = useSearchParams()
-  const callbackUrl = params.get("callbackUrl") || "/"
-  const { control, handleSubmit,  } = useForm({
+  const [eye, setEye] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const params = useSearchParams();
+  const callbackUrl = params.get("callbackUrl") || "/";
+  const { control, handleSubmit } = useForm({
     defaultValues: {
       image: "",
       name: "",
       email: "",
-      password:"",
+      password: "",
       nidno: "",
-      contact: ""
-    }
+      contact: "",
+    },
   });
   const onSubmit = async (data) => {
-    try { 
-        const {email, password} = data
-        setLoading(true)
-      const {status, message} = await createPostUser(data)
+    try {
+      const { email, password } = data;
+      setLoading(true);
+      const { status, message } = await createPostUser(data);
       if (status === 201) {
-      const res = await signIn("credentials", { redirect: false, email, password })
-      if (res.ok) {
-          toast.success(message)
-          window.location.href = callbackUrl
+        const res = await signIn("credentials", {
+          redirect: false,
+          email,
+          password,
+        });
+        if (res.ok) {
+          toast.success(message);
+          window.location.href = callbackUrl;
         }
-      }else{
-        toast.error(message)
+      } else {
+        toast.error(message);
       }
-
     } catch (error) {
-        
-    }finally{
-     setLoading(false)
+    } finally {
+      setLoading(false);
     }
   };
   return (
-    <div className="bg-base-200 rounded-xl shadow-lg">
-    <div className="py-12 px-4 md:px-0">
-      <div className="w-full max-w-md mx-auto border border-gray-400 p-5 rounded-lg">
-      <h2 className="text-2xl font-bold mb-6 text-center text-primary">Create Account</h2>
-      
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <FormInput
-          name="image" 
-          control={control} 
-          label="Photo" 
-          placeholder="Photo URL.."
-          rules={{ required: "Photo url is required" }}
-        />
-        <FormInput
-          name="name" 
-          control={control} 
-          label="Name" 
-          placeholder="Enter your name"
-          rules={{ required: "Name is required" }}
-        />
+    <Container className="transition-colors duration-300">
+      <div className="py-12 space-y-8 md:space-y-12 lg:space-y-0 lg:flex justify-around">
+        <div className="w-full max-w-md mx-auto border border-gray-400 dark:border-slate-700 p-5 rounded-lg bg-white dark:bg-slate-800 transition-colors">
+          <h2 className="text-2xl font-bold mb-6 text-center text-primary">
+            Create Account
+          </h2>
 
-        <FormInput 
-          name="email" 
-          control={control} 
-          label="Email" 
-          type="email"
-          placeholder="Enter your email"
-          rules={{ 
-            required: "Email is required",
-            pattern: { 
-            value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.com$/, 
-            message: "Invalid email! Must be like: example@email.com" 
-            },
-            validate: {
-            isLowercase: (value) => 
-            value === value.toLowerCase() || "Email must be in all lowercase characters"
-          }
-          }}
-        />
-       <div className="relative">
-          <FormInput 
-          name="password" 
-          control={control} 
-          label="Password" 
-          type={eye ? "text" : "password"}
-          placeholder="Enter your password"
-          rules={{
-            required: "Password is required",
-            validate: {
-              hasUpper: (value) =>
-                /[A-Z]/.test(value) ||
-                "At least one uppercase letter required",
-              hasLower: (value) =>
-                /[a-z]/.test(value) ||
-                "At least one lowercase letter required",
-              hasNumber: (value) =>
-                /\d/.test(value) || "At least one number required",
-              hasSpecial: (value) =>
-                /[@$!%*?&]/.test(value) ||
-                "At least one special character (@$!%*?&) required",
-              length: (value) =>
-                value.length >= 8 || "Minimum 8 characters required",
-            },
-            }}
-          />
-          <div className="absolute text-gray-700 right-4 top-9.5 cursor-pointer">
-            {eye ? <IoMdEye onClick={() => setEye(!eye)} size={20} /> : <IoMdEyeOff onClick={() => setEye(!eye)} size={20} />}
-          </div>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <FormInput
+              name="image"
+              control={control}
+              label="Photo"
+              placeholder="Photo URL.."
+              rules={{ required: "Photo url is required" }}
+            />
+            <FormInput
+              name="name"
+              control={control}
+              label="Name"
+              placeholder="Enter your name"
+              rules={{ required: "Name is required" }}
+            />
+
+            <FormInput
+              name="email"
+              control={control}
+              label="Email"
+              type="email"
+              placeholder="Enter your email"
+              rules={{
+                required: "Email is required",
+                pattern: {
+                  value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.com$/,
+                  message: "Invalid email! Must be like: example@email.com",
+                },
+                validate: {
+                  isLowercase: (value) =>
+                    value === value.toLowerCase() ||
+                    "Email must be in all lowercase characters",
+                },
+              }}
+            />
+            <div className="relative">
+              <FormInput
+                name="password"
+                control={control}
+                label="Password"
+                type={eye ? "text" : "password"}
+                placeholder="Enter your password"
+                rules={{
+                  required: "Password is required",
+                  validate: {
+                    hasUpper: (value) =>
+                      /[A-Z]/.test(value) ||
+                      "At least one uppercase letter required",
+                    hasLower: (value) =>
+                      /[a-z]/.test(value) ||
+                      "At least one lowercase letter required",
+                    hasNumber: (value) =>
+                      /\d/.test(value) || "At least one number required",
+                    hasSpecial: (value) =>
+                      /[@$!%*?&]/.test(value) ||
+                      "At least one special character (@$!%*?&) required",
+                    length: (value) =>
+                      value.length >= 8 || "Minimum 8 characters required",
+                  },
+                }}
+              />
+              <div className="absolute text-gray-700 right-4 top-9.5 cursor-pointer">
+                {eye ? (
+                  <IoMdEye onClick={() => setEye(!eye)} size={20} />
+                ) : (
+                  <IoMdEyeOff onClick={() => setEye(!eye)} size={20} />
+                )}
+              </div>
+            </div>
+            <FormInput
+              name="nidno"
+              control={control}
+              label="NID No"
+              rules={{ required: "NID No required" }}
+              placeholder="Enter NID No"
+            />
+            <FormInput
+              name="contact"
+              control={control}
+              label="Contact"
+              rules={{ required: "Contact No required" }}
+              placeholder="Enter Contact No"
+            />
+            <button type="submit" className="btn btn-primary w-full mt-4">
+              {loading ? "Submitting" : "Register"}
+            </button>
+          </form>
+          <p className="mt-4">
+            Alrady Have an account?{" "}
+            <Link href={"/login"} className="text-primary">
+              Login
+            </Link>
+          </p>
+          <SocialLogin />
         </div>
-          <FormInput
-          name="nidno" 
-          control={control} 
-          label="NID No" 
-          rules={{ required: "NID No required" }}
-          placeholder="Enter NID No"
+        <Lottie
+          className="w-full lg:w-2xl"
+          animationData={login}
+          loop={true}
         />
-          <FormInput
-          name="contact" 
-          control={control} 
-          label="Contact" 
-          rules={{ required: "Contact No required" }}
-          placeholder="Enter Contact No"
-        />
-        <button type="submit" className="btn btn-primary w-full mt-4">
-          {loading ? "Submitting" : "Register"}
-        </button>
-      </form>
-      <p className="mt-4">Alrady Have an account? <Link href={"/login"} className="text-primary">Login</Link></p>
-      <SocialLogin />
-    </div>
-    </div>
-    </div>
+      </div>
+    </Container>
   );
-}
+};
 
-export default RegisterComponent
+export default RegisterComponent;

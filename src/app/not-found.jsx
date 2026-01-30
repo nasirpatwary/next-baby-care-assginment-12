@@ -7,12 +7,12 @@ export const metadata = {
 
 export default function NotFound() {
   return (
-    <div className="min-h-[calc(100vh-292px)] space-y-4 bg-base-100 flex flex-col items-center justify-center px-6 text-center">
+    <div className="min-h-[calc(100vh-292px)] space-y-4 flex flex-col items-center justify-center px-6 text-center">
       
       {/* Brand Logo */}
       <div className="flex items-center gap-2">
         <Ambulance size={40} className="text-primary" />
-        <span className="text-3xl font-black text-base-content tracking-tight">
+        <span className="text-3xl font-black text-base-content dark:text-gray-400 tracking-tight">
           Care<span className="text-primary">.xyz</span>
         </span>
       </div>
@@ -22,7 +22,7 @@ export default function NotFound() {
           <h2 className="text-4xl font-extrabold text-base-content">
             Lost your way?
           </h2>
-          <p className="text-base-content/80 text-lg leading-relaxed">
+          <p className="text-base-content/80 dark:text-gray-400 text-lg leading-relaxed">
             We couldn't find the medical service or page you are looking for. 
             It might have been relocated or the link is incorrect.
           </p>
@@ -31,7 +31,7 @@ export default function NotFound() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               href="/"
-              className="flex items-center justify-center gap-2 bg-primary text-primary-content  rounded-2xl btn transition-all hover:scale-105 shadow-lg active:scale-95"
+              className="flex items-center justify-center gap-2 bg-primary text-primary-content  rounded-full btn transition-all hover:scale-105 shadow-lg active:scale-95"
             >
               <Home size={20} />
               Home

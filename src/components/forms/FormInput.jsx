@@ -19,7 +19,7 @@ const FormInput = ({ name, control, label, type = "text", placeholder = "", read
               type={type}
               readOnly={readOnly}
               placeholder={placeholder}
-              className={`input outline-0 w-full ${error && "input-error"}`}
+              className={`dark:bg-slate-700 dark:text-gray-300 input outline-0 w-full ${error && "input-error"}`}
             />
             {error && (
               <label className="label">

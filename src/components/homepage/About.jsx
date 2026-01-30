@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import { Baby, HeartHandshake, Stethoscope, ShieldCheck, Clock8, Activity } from 'lucide-react';
 import Container from '../shared/Container';
+import { useTheme } from 'next-themes';
 
 const VerticalTimeline = dynamic(
   () => import('react-vertical-timeline-component').then((mod) => mod.VerticalTimeline),
@@ -58,37 +59,53 @@ const careData = [
   }
 ];
 const About = () => {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+
   const observerOptions = {
     triggerOnce: false,
     rootMargin: '0px 0px -40px 0px'
   };
 
   return (
-    <div className="bg-gray-50 py-16 overflow-hidden">
+    // bg-gray-50 dark:bg-slate-950 যোগ করা হয়েছে
+    <div className="bg-gray-50 dark:bg-slate-950 py-16 transition-colors duration-300 overflow-hidden">
       <Container>
         <div className="text-center space-y-4 mb-12">
-          <h2 className="text-2xl md:text-4xl font-extrabold">
+          <h2 className="text-2xl md:text-4xl font-extrabold text-gray-900 dark:text-white">
             Reliable Care Solutions
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Providing trusted support for children, elderly, and patients with a focus on safety and compassion.
           </p>
         </div>
 
-        <VerticalTimeline animate={true} lineColor="#e5e7eb">
+        {/* lineColor ডার্ক মোডে পরিবর্তন করা হয়েছে */}
+        <VerticalTimeline animate={true} lineColor={isDark ? "#0B111A" : "#e5e7eb"}>
           {careData.map((item) => (
             <VerticalTimelineElement
               key={item.id}
               className="vertical-timeline-element--work"
-              contentStyle={{ background: '#fff', color: '#374151', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-              contentArrowStyle={{ borderRight: '7px solid  #fff' }}
+              // contentStyle ডাইনামিক করা হয়েছে
+              contentStyle={{ 
+                background: isDark ? '#1e293b' : '#fff', 
+                color: isDark ? '#f1f5f9' : '#374151', 
+                boxShadow: isDark ? '0 10px 15px -3px rgb(0 0 0 / 0.5)' : '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+                border: isDark ? '1px solid #334155' : 'none'
+              }}
+              contentArrowStyle={{ 
+                borderRight: `7px solid ${isDark ? '#1e293b' : '#fff'}` 
+              }}
               date={item.date}
+              dateClassName={isDark ? "text-gray-400" : "text-gray-600"}
               intersectionObserverProps={observerOptions}
               iconStyle={{ background: item.bgColor, color: '#fff' }}
-              icon={<div className="absolute inset-0">{item.icon}</div>}
+              icon={<div className="absolute inset-0 z-10">{item.icon}</div>}
             >
-              <h3 className="text-xl font-semibold">{item.title}</h3>
-              <p className="!text-sm !font-normal !leading-relaxed text-gray-500">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                {item.title}
+              </h3>
+              <p className="!text-sm !font-normal !leading-relaxed text-gray-500 dark:text-gray-400">
                 {item.description}
               </p>
             </VerticalTimelineElement>

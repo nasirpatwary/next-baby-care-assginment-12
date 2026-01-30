@@ -86,7 +86,7 @@ const FormBooing = ({service_charge, hourly_rate, service_name}) => {
    }
  }
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="border border-base-200 p-4 md:p-6 grid grid-cols-1 gap-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="border rounded-3xl border-gray-100 dark:border-slate-800 p-4 md:p-6 grid grid-cols-1 gap-4">
     
       <FormSelect
         name="duration"

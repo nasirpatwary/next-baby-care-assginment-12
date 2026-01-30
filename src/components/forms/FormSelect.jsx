@@ -16,7 +16,7 @@ const FormSelect = ({ name, control, label, options = [], rules = {} }) => {
           <>
             <select 
               {...field} 
-              className={`select outline-0 w-full ${error ? "select-error" : "select-gray-300"}`}
+              className={`select dark:bg-slate-700 dark:text-gray-200 outline-0 w-full ${error ? "select-error" : "select-gray-300"}`}
             >
               <option value="" disabled>Select one</option>
               {options.map((opt) => (

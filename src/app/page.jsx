@@ -1,13 +1,13 @@
-import Banner from "@/components/homepage/Banner"
-import About from "@/components/homepage/About"
-import ServicesOverview from "@/components/homepage/ServicesOverview"
-import Testimonial from "@/components/homepage/Testimonial"
+import Hero from "@/components/homepage/Hero";
+import About from "@/components/homepage/About";
+import ServicesOverview from "@/components/homepage/ServicesOverview";
+import Testimonial from "@/components/homepage/Testimonial";
 
 const Home = () => {
   return (
     <div>
       <section>
-        <Banner />
+        <Hero />
       </section>
       <section>
         <ServicesOverview />
@@ -19,7 +19,7 @@ const Home = () => {
         <Testimonial />
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

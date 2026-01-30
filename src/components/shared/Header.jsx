@@ -17,6 +17,7 @@ import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 import { Loader } from "lucide-react";
 import Image from "next/image";
+import { ThemeToggle } from "./ThemeToggle";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const session = useSession()
@@ -62,10 +63,10 @@ export default function Header() {
          :
          <>
          <NavbarItem>
-         <Link href="/login" className="btn btn-sm">Login</Link>
+         <Link href="/login" className="btn btn-sm rounded-full">Login</Link>
        </NavbarItem>
        <NavbarItem>
-         <Link href="/register" className="btn btn-sm">
+         <Link href="/register" className="btn btn-sm rounded-full">
            Sign Up
          </Link>
        </NavbarItem>
@@ -103,6 +104,7 @@ export default function Header() {
         }
          </div>
       </NavbarMenu>
+      <ThemeToggle />
     </NextUINavbar>
   );
 }

@@ -1,7 +1,7 @@
 import axios from "axios";
-
+const baseURL = new URL(process.env.NEXTAUTH_URL).toString();
 const apiAxios = axios.create({
-  baseURL: process.env.NEXTAUTH_URL,
+  baseURL
 });
 
 export default apiAxios;
