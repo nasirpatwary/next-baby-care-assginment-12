@@ -5,7 +5,7 @@ import { ThemeProvider } from "next-themes";
 export const Providers = ({children}) =>{
     return ( 
     <SessionProvider>
-        <ThemeProvider
+    <ThemeProvider
       attribute="class" 
       defaultTheme="system" 
       enableSystem

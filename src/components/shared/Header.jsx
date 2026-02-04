@@ -74,11 +74,11 @@ export default function Header() {
          
         }
         </div>
+      </NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
         />
-      </NavbarContent>
       <NavbarMenu>
           <NavbarMenuItem>
             <nav className="flex flex-col space-y-4">
