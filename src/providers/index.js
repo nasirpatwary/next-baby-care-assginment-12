@@ -12,7 +12,7 @@ export const Providers = ({children}) =>{
     >
       {children}
     </ThemeProvider>
-        <Toaster />
+    <Toaster />
      </SessionProvider>
     )
 }
